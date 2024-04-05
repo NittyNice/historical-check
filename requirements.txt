@@ -1,0 +1,7 @@
+streamlit_option_menu
+pandas
+numpy
+python-dateutil
+missingno
+matplotlib
+plotly
