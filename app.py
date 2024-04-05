@@ -94,7 +94,8 @@ if uploaded_tdt is not None:
         selected = option_menu(None, ["Summary", "Format", "Header", "Timestamp", "Data"], 
                                 icons=["Summary", "Format", "Header", "Timestamp", "Data"], 
                                 default_index=0, orientation="horizontal")
-
+        if selected == "Format":
+            st.write('Next version')
         if selected == "Format":
             st.markdown("## Data table")
             # cols_to_drop = [col for col in df_hist.columns if 'Unnamed' in col or 'TAG' in col]         # Drop columns with names containing 'Unnamed'
