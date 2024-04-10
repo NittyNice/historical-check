@@ -306,7 +306,10 @@ if uploaded_tdt is not None:
 
             st.markdown('##### 4.2) Check Freeze data')
             st.markdown('When data is present, the plot is shaded in grey and when it is absent the plot is displayed in white.')
-            roll_hr = 6
+            roll_hr = st.slider(
+                'Select a window range to check freeze data (hrs.)',
+                1, 240, 6)
+            # roll_hr = 6
             rolling_std = hist_data.rolling(window=roll_hr*6).std()
             rolling_std = rolling_std.mask(rolling_std < 0.0001)
 
