@@ -339,10 +339,8 @@ if uploaded_tdt is not None:
             norm_select = st.toggle("Nomalization")
             plot_select = st.radio(
                 "Select plot type",
-                ["lines", "markers", "lines+markers"],
-                index=None,
+                ["lines", "markers", "lines+markers"]
             )
-            st.write(type(plot_select), plot_select)
             if not norm_select:
                 for column in options:
                     fig.add_trace(go.Scatter(x=hist_data_short.index, y=hist_data_short[column], mode=plot_select, name=column))
