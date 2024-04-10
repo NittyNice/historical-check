@@ -310,7 +310,8 @@ if uploaded_tdt is not None:
                 'Select a window range to check freeze data (hrs.)',
                 1, 48, 6)
             # roll_hr = 6
-            rolling_std = hist_data.rolling(window=roll_hr*6).std()
+            hist_data_fillna = hist_data.fillna(method='ffill')
+            rolling_std = hist_data_fillna.rolling(window=roll_hr*6).std()
             rolling_std = rolling_std.mask(rolling_std < 0.0001)
 
             # Calculate the proportion of missing data for each column
