@@ -287,7 +287,8 @@ if uploaded_tdt is not None:
             hist_data_short = hist_data.rename(columns=lambda x: x.replace('VIRTUAL_VIEW.LocalHistorian.', ''))
             
             ## 4) Check missing data -------------------------------
-            st.markdown('##### 4.2) Missing data check')
+            st.markdown('##### 4.1) Missing data check')
+            st.markdown('When data is present, the plot is shaded in grey and when it is absent the plot is displayed in white.')
             # Calculate the proportion of missing data for each column
             missing_data_proportion = hist_data_short.isnull().mean()*100
             missing_data_proportion.rename("Missing data proportion (%)", inplace=True)
@@ -304,6 +305,7 @@ if uploaded_tdt is not None:
                 st.pyplot(fig, use_container_width=True)
 
             st.markdown('##### 4.2) Check Freeze data')
+            st.markdown('When data is present, the plot is shaded in grey and when it is absent the plot is displayed in white.')
             roll_hr = 6
             rolling_std = hist_data.rolling(window=roll_hr*6).std()
             rolling_std = rolling_std.mask(rolling_std < 0.0001)
@@ -350,5 +352,7 @@ if uploaded_tdt is not None:
 
             # Plot the figure using st.plotly_chart
             st.plotly_chart(fig, use_container_width=True)
+
+            st.dataframe(df_unit)
 
             
