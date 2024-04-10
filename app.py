@@ -341,7 +341,7 @@ if uploaded_tdt is not None:
             #     "Select plot type",
             #     ["lines", "markers", "lines+markers"]
             # )
-            plot_select = "lines"
+            plot_select = "lines+markers"
             if not norm_select:
                 for column in options:
                     fig.add_trace(go.Scatter(x=hist_data_short.index, y=hist_data_short[column], mode=plot_select, name=column))
