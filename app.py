@@ -131,10 +131,11 @@ if uploaded_tdt is not None:
                 tdt_points = df_unit[df_unit['Point Type'] == "Analog"]['Canary Point Name']
                 hist_points = hist_head_t['Point Name']
 
-                tdt_points = tdt_points.reset_index().rename(columns={'index':'[TDT] Index'}).set_index('Canary Point Name', drop=False)
-                hist_points = hist_points.reset_index().rename(columns={'index':'[Hist] Index'}).set_index('Point Name', drop=False)
+                tdt_points = tdt_points.reset_index().rename(columns={'index':'[TDT] Index', 'Canary Point Name':'[TDT] Canary Point Name'}).set_index('[TDT] Canary Point Name', drop=False)
+                hist_points = hist_points.reset_index().rename(columns={'index':'[Hist] Index', 'Point Name':'[Hist] Point Name'}).set_index('[Hist] Point Name', drop=False)
                 joined_points = pd.concat([tdt_points, hist_points], axis=1).reset_index(drop=True)
                 joined_points.index += 1
+                joined_points['Check'] = joined_points['[TDT] Canary Point Name'] == joined_points['[Hist] Point Name']
 
                 condition_2_2 = joined_points.isnull().values.any()
                 if not condition_2_2:
