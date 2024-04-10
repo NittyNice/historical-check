@@ -343,14 +343,13 @@ if uploaded_tdt is not None:
                 index=None,
             )
             st.write(type(plot_select), plot_select)
-            lines+markers
             if not norm_select:
                 for column in options:
-                    fig.add_trace(go.Scatter(x=hist_data_short.index, y=hist_data_short[column], mode='lines', name=column))
+                    fig.add_trace(go.Scatter(x=hist_data_short.index, y=hist_data_short[column], mode=plot_select, name=column))
             else:
                 for column in options:
                     hist_data_short_norm = (hist_data_short - hist_data_short.min()) / (hist_data_short.max() - hist_data_short.min())
-                    fig.add_trace(go.Scatter(x=hist_data_short_norm.index, y=hist_data_short_norm[column], mode='lines', name=column))
+                    fig.add_trace(go.Scatter(x=hist_data_short_norm.index, y=hist_data_short_norm[column], mode=plot_select, name=column))
 
             # Update figure layout
             fig.update_layout(
